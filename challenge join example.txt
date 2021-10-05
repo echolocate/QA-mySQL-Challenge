@@ -1,0 +1,38 @@
+Which category contains the most films?
+SELECT category.name
+FROM category
+JOIN film_category ON film_category.category_id=category.category_id
+GROUP BY category.category_id
+ORDER BY COUNT(film_category.category_id) DESC
+LIMIT 1;
+
+category
++-------------+-----------+---------------------+
+| category_id | name      | last_update         |
++-------------+-----------+---------------------+
+|           1 | Action    | 2006-02-15 04:46:27 |
+|           2 | Animation | 2006-02-15 04:46:27 |
+|           3 | Children  | 2006-02-15 04:46:27 |
++-------------+-----------+---------------------+
+film_category
++---------+-------------+---------------------+
+| film_id | category_id | last_update         |
++---------+-------------+---------------------+
+|       1 |           6 | 2006-02-15 05:07:09 |
+|       2 |          11 | 2006-02-15 05:07:09 |
+|       3 |           6 | 2006-02-15 05:07:09 |
++---------+-------------+---------------------+
+mysql> select * from category join film_category on film_category.category_id=category.category_id limit 5;
++-------------+--------+---------------------+---------+-------------+---------------------+
+| category_id | name   | last_update         | film_id | category_id | last_update         |
++-------------+--------+---------------------+---------+-------------+---------------------+
+|           1 | Action | 2006-02-15 04:46:27 |      19 |           1 | 2006-02-15 05:07:09 |
+|           1 | Action | 2006-02-15 04:46:27 |      21 |           1 | 2006-02-15 05:07:09 |
+|           1 | Action | 2006-02-15 04:46:27 |      29 |           1 | 2006-02-15 05:07:09 |
+|           1 | Action | 2006-02-15 04:46:27 |      38 |           1 | 2006-02-15 05:07:09 |
+|           1 | Action | 2006-02-15 04:46:27 |      56 |           1 | 2006-02-15 05:07:09 |
++-------------+--------+---------------------+---------+-------------+---------------------+
+
+
+
+SELECT * FROM category JOIN film_category ON film_category.category_id=category.category_id GROUP BY category.category_id ORDER BY COUNT(film_category.category_id) DESC LIMIT 10;
